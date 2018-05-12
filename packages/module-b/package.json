@@ -1,0 +1,17 @@
+{
+  "name": "@alipay/module-b",
+  "version": "6.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "publishConfig": {
+    "registry": "http://registry.npm.alibaba-inc.com"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@alipay/module-base": "^6.0.0"
+  }
+}
