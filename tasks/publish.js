@@ -2,9 +2,13 @@
 
 const shell = require('shelljs');
 const inquirer = require('inquirer');
+const { readJsonSync } = require('fs-extra');
+
 const { join } = require('path');
 
 console.log('请确保已经执行 npm run changelog');
+
+const cwd = process.cwd();
 
 if (
   shell
@@ -23,7 +27,6 @@ if (shell.exec('which tnpm').stdout.indexOf('not found') > -1) {
   shell.exit(1);
 }
 
-const cwd = process.cwd();
 const ret = shell.exec('./node_modules/.bin/lerna updated').stdout;
 const updatedRepos = ret
   .split('\n')
@@ -33,6 +36,13 @@ const updatedRepos = ret
 if (updatedRepos.length === 0) {
   console.log('没有更新的模块');
   shell.exit(1);
+}
+
+function gitTag() {
+  const lernaPkg = readJsonSync(join(cwd, 'lerna.json'));
+  const { version } = lernaPkg;
+
+  shell.exec(`git tag ${version} -m "${version}"`);
 }
 
 function publishToNpm(tag) {
@@ -84,4 +94,5 @@ inquirer
   })
   .then(tag => {
     publishToNpm(tag.tag);
+    gitTag();
   });

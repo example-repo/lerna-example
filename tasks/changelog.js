@@ -3,8 +3,11 @@
 const shell = require('shelljs');
 const inquirer = require('inquirer');
 const { readJsonSync, writeJsonSync } = require('fs-extra');
+
 const { join } = require('path');
 const { fork } = require('child_process');
+
+const cwd = process.cwd();
 
 if (
   shell
@@ -23,7 +26,6 @@ if (shell.exec('which tnpm').stdout.indexOf('not found') > -1) {
   shell.exit(1);
 }
 
-const cwd = process.cwd();
 const ret = shell.exec('./node_modules/.bin/lerna updated').stdout;
 const updatedRepos = ret
   .split('\n')
