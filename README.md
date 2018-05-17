@@ -1,7 +1,7 @@
 # lerna-example
 introduce lerna workfow, Ref https://github.com/pigcan/blog/issues/16
 
-### 仓库结构说明
+## 仓库结构说明
 
 `packages` 目录下存放的是所有的子仓库
 `tasks` 目录下存放一些全局的任务脚本，当前有用的是 `publish.js` 和 `changelog.js`
@@ -10,7 +10,7 @@ introduce lerna workfow, Ref https://github.com/pigcan/blog/issues/16
 - `publish.js`，当 changelog 生成并调整相关内容完毕后，执行 `npm run publish`，会对如上所有的子 packages 进行版本发布，执行脚本时会提醒，本次发布是正式版还是 beta，会予以不同 npm dist-tag 进行发布
 
 
-### 日常开发流程
+## 日常开发流程
 
 在常规开发中，我们的操作方式会变更为如下：
 
