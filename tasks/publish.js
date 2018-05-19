@@ -45,6 +45,16 @@ function gitTag() {
   shell.exec(`git tag ${version} -m "${version}"`);
 }
 
+function gitAdd() {
+  shell.exec('git add .');
+}
+
+function gitCommit() {
+  const lernaPkg = readJsonSync(join(cwd, 'lerna.json'));
+  const { version } = lernaPkg;
+  shell.exec(`git commit -m "${version}"`);
+}
+
 function publishToNpm(tag) {
   updatedRepos.forEach(repo => {
     const isAlipay = repo.indexOf('@alipay/') === 0;
@@ -94,5 +104,7 @@ inquirer
   })
   .then(tag => {
     publishToNpm(tag.tag);
+    gitAdd();
+    gitCommit();
     gitTag();
   });
