@@ -18,7 +18,7 @@
   },
   "lint-staged": {
     "*.js": [
-      "prettier --trailing-comma es5 --single-quote --write",
+      "prettier-eslint --trailing-comma es5 --single-quote --write",
       "git add"
     ]
   },
@@ -30,7 +30,7 @@
     "husky": "v1.0.0-rc.4",
     "lerna": "^2.10.2",
     "lint-staged": "^7.0.4",
-    "prettier": "^1.11.1"
+    "prettier-eslint": "^4.7.1"
   },
   "dependencies": {
     "fs-extra": "^6.0.0",
